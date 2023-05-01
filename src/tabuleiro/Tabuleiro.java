@@ -7,17 +7,42 @@ public class Tabuleiro {
 
     private Peca[][] pecas;
 
-    public Tabuleiro(int linhas, int colunas){
+    public Tabuleiro(int linhas, int colunas) {
         this.linhas = linhas;
         this.colunas = colunas;
         pecas = new Peca[linhas][colunas];
     }
 
-    public Peca getPeca(int linha, int coluna){
+    public Peca getPeca(int linha, int coluna) {
         return pecas[linha][coluna];
     }
 
-    public void colocarPeca(Peca p, Posicao pos){
+    public Peca getPeca(Posicao pos) {
+        return pecas[pos.linha][pos.coluna];
+    }
+
+    public boolean isEspacoOcupado(Posicao pos) throws TabuleiroException {
+        validarPosicao(pos);
+        return getPeca(pos) != null;
+    }
+
+    public boolean isPosicaoValida(Posicao pos) {
+        if (pos.linha < 0 || pos.linha >= linhas || pos.coluna < 0 || pos.coluna >= colunas) {
+            return false;
+        }
+        return true;
+    }
+
+    public void validarPosicao(Posicao pos) throws TabuleiroException {
+        if (!isPosicaoValida(pos)) {
+            throw new TabuleiroException("Posição inválida!");
+        }
+    }
+
+    public void colocarPeca(Peca p, Posicao pos) throws TabuleiroException {
+        if(isEspacoOcupado(pos)){
+            throw new TabuleiroException("Já existe uma peça nessa posição!");
+        }
         pecas[pos.linha][pos.coluna] = p;
         p.posicao = pos;
     }
