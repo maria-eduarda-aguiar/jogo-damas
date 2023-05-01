@@ -1,5 +1,8 @@
 package tabuleiro;
 
+
+import tela.Tela;
+
 public class Tabuleiro {
 
     public int linhas;
@@ -30,6 +33,9 @@ public class Tabuleiro {
         if (pos.linha < 0 || pos.linha >= linhas || pos.coluna < 0 || pos.coluna >= colunas) {
             return false;
         }
+        if (Tela.isNumeroPar(pos.linha) && Tela.isNumeroPar(pos.coluna) || !Tela.isNumeroPar(pos.linha) && !Tela.isNumeroPar(pos.coluna)) {
+            return false;
+        }
         return true;
     }
 
@@ -40,7 +46,7 @@ public class Tabuleiro {
     }
 
     public void colocarPeca(Peca p, Posicao pos) throws TabuleiroException {
-        if(isEspacoOcupado(pos)){
+        if (isEspacoOcupado(pos)) {
             throw new TabuleiroException("Já existe uma peça nessa posição!");
         }
         pecas[pos.linha][pos.coluna] = p;
