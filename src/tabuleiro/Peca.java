@@ -6,7 +6,7 @@ public class Peca {
     private int qteMovimentos;
     private Tabuleiro tab;
 
-    public Peca(Posicao posicao, Tabuleiro tab, Cor cor){
+    public Peca(Posicao posicao, Tabuleiro tab, Cor cor) {
         this.posicao = posicao;
         this.tab = tab;
         this.cor = cor;
