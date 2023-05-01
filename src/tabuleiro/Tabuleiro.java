@@ -1,13 +1,11 @@
 package tabuleiro;
 
-
 import tela.Tela;
 
 public class Tabuleiro {
 
     public int linhas;
     public int colunas;
-
     private Peca[][] pecas;
 
     public Tabuleiro(int linhas, int colunas) {
@@ -51,6 +49,18 @@ public class Tabuleiro {
         }
         pecas[pos.linha][pos.coluna] = p;
         p.posicao = pos;
+    }
+
+    public Peca retirarPeca(Posicao pos){
+
+        if(getPeca(pos) == null){
+            return null;
+        }
+
+        Peca aux = getPeca(pos);
+        aux.posicao = null;
+        pecas[pos.linha][pos.coluna] = null;
+        return aux;
     }
 
     public int getLinha() {

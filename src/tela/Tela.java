@@ -1,12 +1,11 @@
 package tela;
 
-import tabuleiro.ConsoleColors;
-import tabuleiro.Cor;
-import tabuleiro.Peca;
-import tabuleiro.Tabuleiro;
+import damas.PosicaoDamas;
+import tabuleiro.*;
+
+import java.util.Scanner;
 
 public class Tela {
-
 
     public static void imprimirTabuleiro(Tabuleiro tab) {
         for (int i = 0; i < tab.linhas; i++) {
@@ -14,28 +13,12 @@ public class Tela {
             for (int j = 0; j < tab.colunas; j++) {
                 Peca peca = tab.getPeca(i, j);
                 if (peca == null) {
-                    if (isNumeroPar(i)) {
-                        if (!isNumeroPar(j)) {
-                            System.out.print(ConsoleColors.COR_VERMELHA + "- " + ConsoleColors.COR_BRANCA);
-                        } else {
-                            System.out.print("- ");
-                        }
 
-                    } else {
-                        if (isNumeroPar(j)) {
-                            System.out.print(ConsoleColors.COR_VERMELHA + "- " + ConsoleColors.COR_BRANCA);
-
-                        } else {
-                            System.out.print("- ");
-                        }
-
-                    }
-
+                    System.out.print("- ");
                 } else {
                     imprimirPeca(tab.getPeca(i, j));
                     System.out.print(" ");
                 }
-
             }
             System.out.println();
         }
@@ -43,18 +26,24 @@ public class Tela {
     }
 
     public static void imprimirPeca(Peca peca) {
-        if (peca.getCor() == Cor.Branca) {
-            System.out.print(peca);
-        } else {
-            System.out.print(ConsoleColors.COR_PRETA + peca + ConsoleColors.COR_BRANCA);
 
-        }
+        System.out.print(peca);
+
     }
 
-    public static boolean isNumeroPar(int numero){
-        if(numero % 2 == 0){
+    public static boolean isNumeroPar(int numero) {
+        if (numero % 2 == 0) {
             return true;
         }
         return false;
+    }
+
+    public static PosicaoDamas lerPosicaoDamas() {
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.next();
+        char coluna = s.charAt(0);
+        int linha = Integer.parseInt(String.valueOf(s.charAt(1)));
+
+        return new PosicaoDamas(coluna, linha);
     }
 }

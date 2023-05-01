@@ -12,7 +12,7 @@ public class PosicaoDamas {
     }
 
     public Posicao toPosicao(){
-        return new Posicao(8 - linha, coluna - 'A');
+        return new Posicao(8 - linha, Character.toUpperCase(coluna) - 'A');
     }
 
     @Override

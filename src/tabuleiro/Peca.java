@@ -13,6 +13,10 @@ public class Peca {
         this.qteMovimentos = 0;
     }
 
+    public void incrementarQteMovimentos() {
+        qteMovimentos++;
+    }
+
     public Tabuleiro getTab() {
         return tab;
     }
